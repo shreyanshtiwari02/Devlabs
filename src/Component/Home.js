@@ -5,7 +5,19 @@ import { setSource } from '../Slice/DataSlice';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import BookMark from './BookMark';
+
 function Home() {
+    const openPopup = () => {
+        // Set the state variable to true, which will cause the pop-up to appear
+        setState({ isOpen: true });
+      };
+      
+      // Create a function that will close the pop-up
+      const closePopup = () => {
+        // Set the state variable to false, which will cause the pop-up to disappear
+        setState({ isOpen: false });
+      };
+      
     let itemList='';
 const  [currentPage,setCurrentPage]=useState(1)
 const postPerpage=16;
@@ -31,6 +43,7 @@ const dispatch=useDispatch();
             <img className='logo' src={datalist.image} alt={datalist.category}/>
 <h2>{datalist.productName}</h2>
 <p>{datalist.description}</p>
+
 <button className='btn-b' onClick={(e)=>window.open(datalist.link)}>Link</button>
 <button className='btn-b'onClick={()=>dispatch(setSource({
     image:datalist.image,
@@ -38,10 +51,11 @@ const dispatch=useDispatch();
     desc:datalist.description,
     link:datalist.link
 }))}>Bookmark</button>
-
-
-
-        </div>
+    <button className='btn-b' onClick={() =>
+     {navigator.clipboard.writeText(datalist.link);alert("Link Copied!")}}>Share
+    </button>
+    
+</div>
     )
 
 })

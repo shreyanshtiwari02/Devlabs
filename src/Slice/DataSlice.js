@@ -11,7 +11,7 @@ const DataSlice=createSlice({
                 image:action.payload.image,
                 name:action.payload.name,
                 desc:action.payload.desc,
-                link:action.payload.link
+                link:action.payload.link,
             });
         },
         deleteSource:(state,action)=>{
